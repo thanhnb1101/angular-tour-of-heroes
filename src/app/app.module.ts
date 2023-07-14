@@ -9,7 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { RouterModule } from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 
@@ -19,14 +19,22 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     DashboardComponent,
     HeroDetailComponent,
     HeroesComponent,
-    
+
   ],
   imports: [
     RouterModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpClientModule,
+
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
